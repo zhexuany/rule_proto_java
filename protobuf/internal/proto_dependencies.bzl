@@ -1,6 +1,5 @@
 load("//protobuf:deps.bzl", PROTOBUF_DEPS = "DEPS")
 load("//java:deps.bzl", JAVA_DEPS = "DEPS")
-load("//grpc_gateway:deps.bzl", GRPC_GATEWAY_DEPS = "DEPS")
 
 def _md_link(label, href):
     return "[%s](%s)" % (label, href)
@@ -43,7 +42,12 @@ def _md_rule_http_archive(rule, name, d):
     ]
 
 def _md_rule_http_file(rule, name, d):
-    return _md_rule_http_archive(rule, name, d)
+    url = d["urls"]
+    return [
+        _workspace_rule_link(rule),
+        _md_workspace_label(name),
+        _md_link(_md_sha(d), url),
+    ]
 
 def _md_rule_maven_jar(rule, name, d):
     artifact = d["artifact"]
@@ -92,11 +96,10 @@ def _md_section(ctx, label, deps):
 def _md(ctx):
     lines = []
     lines.append("# Language dependencies for rules_protobuf")
-    lines.append("To update this list, `bazel build @org_pubref_rules_protobuf//:deps && cp bazel-bin/DEPENDENCIES.md .`")
+    lines.append("To update this list, `bazel build @org_zhexuany_rule_proto_java//:deps && cp bazel-bin/DEPENDENCIES.md .`")
     lines.append("")
     lines += _md_section(ctx, "Protobuf", PROTOBUF_DEPS)
     lines += _md_section(ctx, "Java", JAVA_DEPS)
-    lines += _md_section(ctx, "Grpc Gateway", GRPC_GATEWAY_DEPS)
     return "\n".join(lines)
 
 def _proto_dependencies_impl(ctx):

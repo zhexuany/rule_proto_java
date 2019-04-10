@@ -22,7 +22,7 @@ use your own `proto_language` definitions in conjunction with the
 hypothetical example to generate php outputs:
 
 ```python
-load("@org_pubref_rules_protobuf//protobuf:rules.bzl", "proto_language", "proto_compile")
+load("@org_zhexuany_rule_proto_java//protobuf:rules.bzl", "proto_language", "proto_compile")
 
 proto_language(
    name = "php",
@@ -91,19 +91,19 @@ The `proto_compile` rule invokes the `protoc` tool with a list of
 protoc outputs for multiple languages simultaneously:
 
 ```python
-load("@org_pubref_rules_protobuf//protobuf:rules.bzl", "proto_compile")
+load("@org_zhexuany_rule_proto_java//protobuf:rules.bzl", "proto_compile")
 
 proto_compile(
    name = "proto_all",
    langs = [
-     "@org_pubref_rules_protobuf//python",
-     "@org_pubref_rules_protobuf//java",
-     "@org_pubref_rules_protobuf//java:nano",
-     "@org_pubref_rules_protobuf//cpp",
-     "@org_pubref_rules_protobuf//objc",
-     "@org_pubref_rules_protobuf//closure",
-     "@org_pubref_rules_protobuf//node",
-     "@org_pubref_rules_protobuf//go",
+     "@org_zhexuany_rule_proto_java//python",
+     "@org_zhexuany_rule_proto_java//java",
+     "@org_zhexuany_rule_proto_java//java:nano",
+     "@org_zhexuany_rule_proto_java//cpp",
+     "@org_zhexuany_rule_proto_java//objc",
+     "@org_zhexuany_rule_proto_java//closure",
+     "@org_zhexuany_rule_proto_java//node",
+     "@org_zhexuany_rule_proto_java//go",
    ],
    with_grpc = True,
 )

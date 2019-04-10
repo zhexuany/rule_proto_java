@@ -91,5 +91,4 @@ def require(keys,
             if _needs_install(key, data, verbose=verbose, strict=strict):
                 data["name"] = key
                 required.append(data)
-    verbose = 1
     return _install(required, verbose, strict)

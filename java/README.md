@@ -12,7 +12,7 @@
 Enable Java support by loading the dependencies in your workspace.
 
 ```python
-load("@org_pubref_rules_protobuf//java:rules.bzl", "java_proto_repositories")
+load("@org_zhexuany_rule_proto_java//java:rules.bzl", "java_proto_repositories")
 java_proto_repositories()
 ```
 
@@ -20,10 +20,10 @@ java_proto_repositories()
 
 This is a thin wrapper over the
 [proto_compile](../protobuf#proto_compile) rule having language
-`@org_pubref_rules_protobuf//:java`.
+`@org_zhexuany_rule_proto_java//:java`.
 
 ```python
-load("@org_pubref_rules_protobuf//java:rules.bzl", "java_proto_compile")
+load("@org_zhexuany_rule_proto_java//java:rules.bzl", "java_proto_compile")
 
 java_proto_compile(
   name = "protos",
@@ -42,10 +42,10 @@ Target //:protos up-to-date:
 
 Pass the set of protobuf source files to the `protos` attribute.
 When depending on a java_proto_library target, it will automatically export
-`@org_pubref_rules_protobuf//java:grpc_compiletime_deps` for you.
+`@org_zhexuany_rule_proto_java//java:grpc_compiletime_deps` for you.
 
 ```python
-load("@org_pubref_rules_protobuf//java:rules.bzl", "java_proto_library")
+load("@org_zhexuany_rule_proto_java//java:rules.bzl", "java_proto_library")
 
 java_proto_library(
   name = "protolib",
@@ -73,7 +73,7 @@ java_library(
   srcs = ['MyApp.java'],
   deps = [
     ":protolib",
-    "@org_pubref_rules_protobuf//java:grpc_compiletime_deps",
+    "@org_zhexuany_rule_proto_java//java:grpc_compiletime_deps",
   ]
 )
 ```
@@ -84,7 +84,7 @@ java_binary(
   main_class = "example.MyApp",
   runtime_deps = [
     ":mylib",
-    "@org_pubref_rules_protobuf//java:netty_runtime_deps",
+    "@org_zhexuany_rule_proto_java//java:netty_runtime_deps",
   ]
 )
 ```
